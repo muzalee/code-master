@@ -1,4 +1,4 @@
-import { HeroHeader } from "@/types/contents"
+import { HeroHeader } from "@/lib/models/contents"
 
 /* ====================
 [> CUSTOMIZING CONTENT <]
