@@ -1,19 +1,19 @@
-import ContactForm from "@/components/pages/contact-form"
+import RegisterForm from "@/components/pages/register-form"
 import HeadingText from "@/components/heading-text"
 
 export const metadata = {
-  title: "Contact",
+  title: "Register",
 }
 
 export default function Contact() {
   return (
     <main className="container flex flex-col items-center py-8">
       <div className="flex flex-col items-center space-y-2 text-center">
-        <HeadingText subtext="Send a message through email">
-          Contact
+        <HeadingText subtext="Sign up for a new account">
+          Register
         </HeadingText>
       </div>
-      <ContactForm />
+      <RegisterForm />
     </main>
   )
 }
