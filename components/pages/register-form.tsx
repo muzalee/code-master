@@ -17,11 +17,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label";
 import { ChevronRight, Loader2 } from "lucide-react";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios from "axios";
 import { RegisterRequest } from "@/lib/models/request";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
-import { User } from "@/lib/models/user";
 
 export default function RegisterForm() {
   const router = useRouter();
