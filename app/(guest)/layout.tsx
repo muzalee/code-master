@@ -1,4 +1,4 @@
-import "./globals.css"
+import "../globals.css"
 import { siteConfig } from "@/config/site"
 import { Inter } from "next/font/google"
 import Navbar from "@/components/layout/navbar"
@@ -38,14 +38,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         {settings.themeToggleEnabled ? (
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Navbar />
-            {children}
+            <Navbar isAuth = { false } />
+              {children}
             <Footer />
           </ThemeProvider>
         ) : (
           <ThemeProvider attribute="class" forcedTheme="light" enableSystem>
-            <Navbar />
-            {children}
+            <Navbar isAuth = { false } />
+              {children}
             <Footer />
           </ThemeProvider>
         )}
