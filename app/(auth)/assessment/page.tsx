@@ -1,9 +1,10 @@
 "use client"
 
+import AssessmentQuestions from '@/components/pages/assessment-question';
 import { useSearchParams } from 'next/navigation'
 
 export default function Dashboard() {
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
  
   return (
     <main>
@@ -11,6 +12,7 @@ export default function Dashboard() {
         <h3 className="text-lg font-light lg:text-2xl">
           Test for { searchParams.get('category') ?? '-' }
         </h3>
+        <AssessmentQuestions />
       </section>
     </main>
   )
