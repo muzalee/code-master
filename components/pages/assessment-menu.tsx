@@ -4,12 +4,19 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { assessmentTypes } from "@/config/contents";
+import { useRouter } from "next/navigation";
 
 export function AssessmentMenu() {
+  const router = useRouter();
+
   const menus = assessmentTypes.map((item) => {
     const Icon = item.icon;
     return (
-      <DropdownMenuItem key={item.code} onClick={() => console.log(item.code)}>
+      <DropdownMenuItem key={item.code} onClick={() => {
+        const url = new URL('/assessment', window.location.origin);
+        url.searchParams.append('category', item.code);
+        router.push(url.toString());
+       }}>
         <Icon className="mr-2 h-4 w-4" />
         <span>{ item.label }</span>
       </DropdownMenuItem>
