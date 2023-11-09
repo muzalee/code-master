@@ -1,12 +1,11 @@
 import bcrypt from 'bcrypt';
 import executeQuery from '@/lib/db';
 import { NextResponse } from 'next/server';
-import { RegisterRequest } from '@/lib/models/request';
-import { User } from 'lucide-react';
+import { AuthRequest } from '@/lib/models/request';
 
 export async function POST(request: Request) 
 {
-  const data: RegisterRequest = await request.json();
+  const data: AuthRequest = await request.json();
   
   const hashedPassword = await bcrypt.hash(data.password, 10);
   const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';

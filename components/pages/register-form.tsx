@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label";
 import { ChevronRight, Loader2 } from "lucide-react";
 import axios from "axios";
-import { RegisterRequest } from "@/lib/models/request";
+import { AuthRequest } from "@/lib/models/request";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -51,13 +51,13 @@ export default function RegisterForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
-    const registerRequest: RegisterRequest = {
+    const request: AuthRequest = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
 
-    axios.post("/api/auth/register", registerRequest)
+    axios.post("/api/auth/register", request)
     .then(response => { 
       localStorage.setItem('user', JSON.stringify(response.data.data));
       form.reset();

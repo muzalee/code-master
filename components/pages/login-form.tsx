@@ -15,19 +15,24 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Label } from "../ui/label";
-import { ChevronRight } from "lucide-react";
-
-const formSchema = z.object({ 
-  email: z.string().min(1, { message: "Email is required", })
-    .email("Email is invalid"), 
-  password: z.string().min(1, { message: "Password is required", })
-    .min(8, { message: "Password must be at least 8 characters", }), 
-});
+import { Label } from "@/components/ui/label";
+import { ChevronRight, Loader2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
+import axios from "axios";
+import { AuthRequest } from "@/lib/models/request";
 
 export default function LoginForm() {
   const router = useRouter();
-
+  const { toast } = useToast()
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const formSchema = z.object({ 
+    email: z.string().min(1, { message: "Email is required", })
+      .email("Email is invalid"), 
+    password: z.string().min(1, { message: "Password is required", })
+  });
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,7 +42,27 @@ export default function LoginForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    form.reset()
+    setIsLoading(true);
+    const request: AuthRequest = {
+      name: null,
+      email: values.email,
+      password: values.password,
+    };
+
+    axios.post("/api/auth/login", request)
+    .then(response => { 
+      localStorage.setItem('user', JSON.stringify(response.data.data));
+      form.reset();
+      router.push('/');
+    }).catch((error) => {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: error.response.data.message,
+      });
+    }).finally(() => {
+      setIsLoading(false);
+    });
   }
 
   return (
@@ -73,9 +98,16 @@ export default function LoginForm() {
               </FormItem>
             )}
           />
-          <Button className="w-full" type="submit">
-            Submit
-          </Button>
+          {isLoading ? (
+            <Button disabled className="w-full mt-3">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+            ) : (
+            <Button className="w-full mt-3" type="submit">
+              Submit
+            </Button>
+          )}
         </form>
       </Form>
       <div>

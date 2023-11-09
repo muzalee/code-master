@@ -1,5 +1,5 @@
-export type RegisterRequest = {
-    name: string,
+export type AuthRequest = {
+    name: string | null,
     email: string,
     password: string
 }
