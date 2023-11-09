@@ -20,3 +20,12 @@ export type Assessment = {
   answer: number | null
   error: string | null
 }
+
+export type AssessmentResult = {
+  id: number
+  category: string
+  date: string
+  score: number
+  compatibility: number
+  recommendation: string
+}
