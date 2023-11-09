@@ -1,4 +1,5 @@
 import AssessmentMenu from "@/components/pages/assessment-menu"
+import { History } from "@/components/pages/history"
 import { UserDetail } from "@/components/user-detail"
 
 export default function Dashboard() {
@@ -14,6 +15,12 @@ export default function Dashboard() {
             </div>
           </div>
       </section>
+      <div className="container w-full mx-auto lg:px-40">
+        <h3 className="text-lg font-light lg:text-2xl">
+          Assessment History
+        </h3>
+        <History />
+      </div>
     </main>
   )
 }
