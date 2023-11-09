@@ -59,8 +59,8 @@ export default function RegisterForm() {
 
     axios.post("/api/auth/register", request)
     .then(() => { 
+      router.replace('/dashboard');
       form.reset();
-      router.replace('/user');
     }).catch((error) => {
       toast({
         variant: "destructive",

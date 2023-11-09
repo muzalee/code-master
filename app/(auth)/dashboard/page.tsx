@@ -17,7 +17,7 @@ export default function Dashboard() {
             </h2>
           </div>
           <Link
-            href="/user/assessment"
+            href="/assessment"
             className={`w-[10rem] ${cn(buttonVariants({ size: "lg" }))}`}
           >
             New Assessment

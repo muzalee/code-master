@@ -51,8 +51,8 @@ export default function LoginForm() {
 
     axios.post("/api/auth/login", request)
     .then(() => { 
+      router.replace('/dashboard');
       form.reset();
-      router.replace('/user');
     }).catch((error) => {
       toast({
         variant: "destructive",

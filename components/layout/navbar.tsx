@@ -1,30 +1,26 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { ModeToggle } from "@/components/mode-toggle"
 import { siteConfig } from "@/config/site"
 import { settings } from "@/config/settings"
-import { LogOut } from "lucide-react"
+import { Loader2, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import React from "react"
 import { deleteUser, isAuth } from "@/lib/auth"
 import { useRouter } from "next/navigation";
 
-export default function Navbar() {
-  const [session, setSession] = useState(false);
+interface NavbarProp {
+  isAuth: boolean;
+}
+
+export default function Navbar({isAuth}: NavbarProp) {
+  const [isLogging, setIsLogging] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    checkSession();
-  }, []);
-
-  async function checkSession() {
-    const isLoggedIn = await isAuth();
-    setSession(isLoggedIn);
-  }
-
   const onLogout = async () => {
+    setIsLogging(true);
     deleteUser();
     router.replace('/');
   }
@@ -39,10 +35,14 @@ export default function Navbar() {
             </h1>
           </Link>
           <div className="flex gap-1">
-            {session && (
-              <Button variant="outline" size="icon" onClick={ onLogout }>
-                <LogOut className="h-4 w-4" />
-            </Button>
+            {isAuth && (              
+              <Button disabled={ isLogging } variant="outline" size="icon" onClick={ isLogging ? undefined : onLogout }>
+                {isLogging ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <LogOut className="h-4 w-4" />
+                )}
+              </Button>
             )}
             {settings.themeToggleEnabled && (
               <ModeToggle />
