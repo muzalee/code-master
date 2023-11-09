@@ -50,10 +50,9 @@ export default function LoginForm() {
     };
 
     axios.post("/api/auth/login", request)
-    .then(response => { 
-      localStorage.setItem('user', JSON.stringify(response.data.data));
+    .then(() => { 
       form.reset();
-      router.push('/user');
+      router.replace('/user');
     }).catch((error) => {
       toast({
         variant: "destructive",

@@ -39,12 +39,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         {settings.themeToggleEnabled ? (
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <Navbar children = { children } />
+            <Navbar />
+              {children}
             <Footer />
           </ThemeProvider>
         ) : (
           <ThemeProvider attribute="class" forcedTheme="light" enableSystem>
-            <Navbar children = { children } />
+            <Navbar />
+              {children}
             <Footer />
           </ThemeProvider>
         )}

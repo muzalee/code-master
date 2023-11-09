@@ -20,7 +20,7 @@ export default function Dashboard() {
             href="/user/assessment"
             className={`w-[10rem] ${cn(buttonVariants({ size: "lg" }))}`}
           >
-            Start New Assessment
+            New Assessment
           </Link>
         </div>
       </section>

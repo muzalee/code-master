@@ -2,6 +2,8 @@ import bcrypt from 'bcrypt';
 import executeQuery from '@/lib/db';
 import { NextResponse } from 'next/server';
 import { AuthRequest } from '@/lib/models/request';
+import { User } from '@/lib/models/user';
+import { setUser } from '@/lib/auth';
 
 export async function POST(request: Request) 
 {
@@ -17,18 +19,23 @@ export async function POST(request: Request)
       return NextResponse.json({ message: 'Invalid email or password' }, { status: 404 });
     }
     
-    const user = result[0];
-    const passwordMatch = await bcrypt.compare(data.password, user.password);
+    const userResult = result[0];
+    
+    const passwordMatch = await bcrypt.compare(data.password, userResult.password);
     
     if (!passwordMatch) {
       return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
     }
+
+    const user: User = {
+      id: userResult.id,
+      name: userResult.name,
+      email: userResult.email,
+    };
     
-    return NextResponse.json({ data: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-      }, 
+    setUser(user);
+    return NextResponse.json({ 
+      data: user, 
       message: 'You have been logged in successfully!' },
     );
    } catch (error: any) {
