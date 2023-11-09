@@ -104,7 +104,7 @@ export default function LoginForm() {
             </Button>
             ) : (
             <Button className="w-full mt-3" type="submit">
-              Submit
+              Login
             </Button>
           )}
         </form>
