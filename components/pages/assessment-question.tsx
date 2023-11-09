@@ -5,29 +5,34 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Assessment } from "@/lib/models/contents"
 import { Label } from "@/components/ui/label"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
+import axios from "axios"
+import { toast } from "@/components/ui/use-toast"
 
 export default function AssessmentQuestions() {
-    const questions: Assessment[] = [
-        {
-            id: 1,
-            question: 'test',
-            options: ['asad', 'basdaassda'],
-            answer: null,
-            error: null
-        },
-        {
-            id: 2,
-            question: 'testaa',
-            options: ['aasd', 'basdasda'],
-            answer: null,
-            error: null
-        }
-    ];
+    const [assessments, setAssessments] = useState<Assessment[]>([]);
+    const searchParams = useSearchParams();
 
-    const [assessments, setAssessments] = useState(questions);
+    useEffect(() => {
+        loadQuestions();
+    }, [])
 
-
+    function loadQuestions() {
+        const category = searchParams.get('category') ?? '-';
+        axios.get("/api/assessment", { params: { category: category } })
+        .then((response) => { 
+            setAssessments(response.data.data);
+        }).catch((error) => {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: error.response.data.message,
+            });
+        }).finally(() => {
+        });
+    }
+    
     function validateAssessments() {
         const newAssessments = assessments.map(assessment => {
             return { ...assessment, error: assessment.answer === null ? "This question must be answered." : null };
