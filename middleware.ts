@@ -9,7 +9,10 @@ export async function middleware(request: NextRequest) {
   if (session && ['/', '/login', '/register'].includes(pathname)) {
     url.pathname = '/dashboard';
     return NextResponse.redirect(url);
-  } else if (!session && ['/dashboard', '/assessment'].includes(pathname)) {
+  } else if (!session && ['/dashboard', '/assessment', '/result/{id}'].includes(pathname)) {
+    url.pathname = '/';
+    return NextResponse.redirect(url);
+  } else if (!session && /^\/result\/\w+$/.test(pathname)) {
     url.pathname = '/';
     return NextResponse.redirect(url);
   } else if (pathname === '/assessment') {
