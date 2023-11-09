@@ -61,7 +61,7 @@ export default function RegisterForm() {
     .then(response => { 
       localStorage.setItem('user', JSON.stringify(response.data.data));
       form.reset();
-      router.push('/');
+      router.push('/user');
     }).catch((error) => {
       toast({
         variant: "destructive",
