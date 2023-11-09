@@ -4,7 +4,7 @@ import { User } from "@/lib/models/user"
 import { useEffect, useState } from "react"
 import { getUser } from "@/lib/auth"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 
 export function UserDetail() {
     const [user, setUser] = useState<User | null>(null);
@@ -24,6 +24,7 @@ export function UserDetail() {
     <Card>
       <CardHeader>
         <CardTitle>Welcome back!</CardTitle>
+        <CardDescription>Nice to see you again</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-6">
         <div className="flex items-center space-x-4">
