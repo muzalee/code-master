@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { assessmentTypes } from "@/config/contents";
 import { useRouter } from "next/navigation";
 
-export function AssessmentMenu() {
+export default function AssessmentMenu() {
   const router = useRouter();
 
   const menus = assessmentTypes.map((item) => {

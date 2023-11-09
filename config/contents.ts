@@ -14,20 +14,26 @@ export const heroHeader: HeroHeader = {
   image: `/hero-img.webp`,
 }
 
+export enum AssessmentCode {
+  Frontend = 'frontend',
+  Backend = 'backend',
+  Framework = 'framework'
+}
+
 export const assessmentTypes: AssessmentType[] = [
   {
     icon: LayoutTemplate,
-    code: 'frontend',
+    code: AssessmentCode.Frontend,
     label: 'Frontend Development',
   },
   {
     icon: Terminal,
-    code: 'backend',
+    code: AssessmentCode.Backend,
     label: 'Backend Skill',
   },
   {
     icon: Code2,
-    code: 'framework',
+    code: AssessmentCode.Framework,
     label: 'Suitable Framework',
   }
 ]

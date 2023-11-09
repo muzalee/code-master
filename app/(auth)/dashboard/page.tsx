@@ -1,4 +1,4 @@
-import { AssessmentMenu } from "@/components/pages/assessment-menu"
+import AssessmentMenu from "@/components/pages/assessment-menu"
 import { UserDetail } from "@/components/user-detail"
 
 export default function Dashboard() {
