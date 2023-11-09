@@ -1,4 +1,5 @@
-import { HeroHeader } from "@/lib/models/contents"
+import { AssessmentType, HeroHeader } from "@/lib/models/contents"
+import { Code2, LayoutTemplate, Terminal } from "lucide-react"
 
 /* ====================
 [> CUSTOMIZING CONTENT <]
@@ -12,3 +13,21 @@ export const heroHeader: HeroHeader = {
   subheader: `Effortless Evaluation. Tailored Recommendations. Swift and Smart.`,
   image: `/hero-img.webp`,
 }
+
+export const assessmentTypes: AssessmentType[] = [
+  {
+    icon: LayoutTemplate,
+    code: 'frontend',
+    label: 'Frontend Development',
+  },
+  {
+    icon: Terminal,
+    code: 'backend',
+    label: 'Backend Skill',
+  },
+  {
+    icon: Code2,
+    code: 'framework',
+    label: 'Suitable Framework',
+  }
+]
