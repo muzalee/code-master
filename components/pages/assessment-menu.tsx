@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
@@ -7,7 +9,7 @@ export function AssessmentMenu() {
   const menus = assessmentTypes.map((item) => {
     const Icon = item.icon;
     return (
-      <DropdownMenuItem key={item.code}>
+      <DropdownMenuItem key={item.code} onClick={() => console.log(item.code)}>
         <Icon className="mr-2 h-4 w-4" />
         <span>{ item.label }</span>
       </DropdownMenuItem>

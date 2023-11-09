@@ -11,7 +11,6 @@ export type AssessmentType = {
   icon: LucideIcon
   code: string
   label: string
-  assesments: Assessment[]
 }
 
 export type Assessment = {

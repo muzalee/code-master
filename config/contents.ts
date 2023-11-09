@@ -19,18 +19,15 @@ export const assessmentTypes: AssessmentType[] = [
     icon: LayoutTemplate,
     code: 'frontend',
     label: 'Frontend Development',
-    assesments: [],
   },
   {
     icon: Terminal,
     code: 'backend',
     label: 'Backend Skill',
-    assesments: [],
   },
   {
     icon: Code2,
     code: 'framework',
     label: 'Suitable Framework',
-    assesments: [],
   }
 ]
