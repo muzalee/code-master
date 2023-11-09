@@ -138,7 +138,7 @@ export default function RegisterForm() {
           </Button>
           ) : (
           <Button className="w-full mt-3" type="submit">
-            Submit
+            Register
           </Button>
           )}
         </form>
